@@ -3,7 +3,7 @@
     <div class="screen">
       {{ message }}
     </div>
-    <form>
+    <form @submit.prevent="onSubmit">
       <div class="numbers">
         <label for="7" v-on:click="getInputValue(7)">7</label>
         <input type="text" id="7" name="7" value="7" />
@@ -38,8 +38,8 @@
         <label for="0" v-on:click="getInputValue(0)">0</label>
         <input type="text" id="0" name="0" value="0" />
 
-        <label for="equal" v-on:click="calc()">=</label>
-        <input id="equal" name="equal" value="=" />
+        <label for="equal">=</label>
+        <input type="submit" id="equal" name="equal" value="=" />
       </div>
       <div class="operators">
         <label for="divide" v-on:click="getOperatorValue('/')">÷</label>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Calculator",
   data() {
@@ -71,6 +73,11 @@ export default {
     };
   },
   methods: {
+    onSubmit(e) {
+      console.log("Equal Button Pressed");
+      e.preventDefault();
+      this.calc();
+    },
     getInputValue(value) {
       if (!this.firstNumber && !this.operator) {
         this.firstNumber = String(value);
@@ -91,11 +98,36 @@ export default {
       }
       this.displayValues();
     },
+
+    async addNums(firstNumber, secondNumber) {
+      try {
+        let response = await axios.post(
+          `https://infinite-oasis-15131.herokuapp.com/http://localhost:3000/add`,
+          {
+            params: {
+              num1: firstNumber,
+              num2: secondNumber,
+            },
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        if (response.status === 200 && response.status < 300) {
+          console.log(response);
+        } else {
+          console.log("error happened");
+        }
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    },
     calc() {
       switch (this.operator) {
         case "+":
           this.calculatedValue =
-            Number(this.firstNumber) + Number(this.secondNumber);
+            // Number(this.firstNumber) + Number(this.secondNumber);
+            this.addNums(this.firstNumber, this.secondNumber);
           break;
 
         case "-":
