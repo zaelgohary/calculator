@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 app.post(`/add`,cors(corsOptions), (req, res) => {
   console.log(req);
   try {
-    const result = sum(req.query.num1, req.query.num2)
+    const result = sum(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);
@@ -45,7 +45,7 @@ app.post(`/add`,cors(corsOptions), (req, res) => {
 // subtract route
 app.post(`/subtract`, (req, res) => {
   try {
-    const result = subtract(req.query.num1, req.query.num2)
+    const result = subtract(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);
@@ -56,7 +56,7 @@ app.post(`/subtract`, (req, res) => {
 // divide route
 app.post(`/divide`, (req, res) => {
   try {
-    const result = divide(req.query.num1, req.query.num2)
+    const result = divide(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);
@@ -66,7 +66,7 @@ app.post(`/divide`, (req, res) => {
 // multiply route
 app.post(`/multiply`, (req, res) => {
   try {
-    const result = multiply(req.query.num1, req.query.num2)
+    const result = multiply(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);

@@ -73,10 +73,8 @@ export default {
     };
   },
   methods: {
-    onSubmit(values) {
-      // e.preventDefault();
-      // const num1 = this.firstNumber;
-      // const num2 = this.secondNumber;
+    onSubmit(e) {
+      e.preventDefault();
       this.calc();
     },
     getInputValue(value) {
@@ -102,17 +100,10 @@ export default {
 
     async addNums(data) {
       try {
-        let response = await axios.post(`http://localhost:3000/add`, data, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+        let response = await axios.post(`http://localhost:3000/add`, data);
 
         if (response.status === 200 && response.status < 300) {
-          const result = await response.json();
-          console.log(result);
+          console.log(response.data);
           return response.data;
         } else {
           console.log("error happened");
@@ -121,27 +112,79 @@ export default {
         console.log("error: ", error);
       }
     },
-    calc() {
+
+    async subtractNums(data) {
+      try {
+        let response = await axios.post(`http://localhost:3000/subtract`, data);
+
+        if (response.status === 200 && response.status < 300) {
+          console.log(response.data);
+          return response.data;
+        } else {
+          console.log("error happened");
+        }
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    },
+
+    async divideNums(data) {
+      try {
+        let response = await axios.post(`http://localhost:3000/divide`, data);
+
+        if (response.status === 200 && response.status < 300) {
+          console.log(response.data);
+          return response.data;
+        } else {
+          console.log("error happened");
+        }
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    },
+
+    async multiplyNums(data) {
+      try {
+        let response = await axios.post(`http://localhost:3000/multiply`, data);
+
+        if (response.status === 200 && response.status < 300) {
+          console.log(response.data);
+          return response.data;
+        } else {
+          console.log("error happened");
+        }
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    },
+    async calc() {
       switch (this.operator) {
         case "+":
-          this.calculatedValue =
-            // Number(this.firstNumber) + Number(this.secondNumber);
-            this.addNums({ num1: this.firstNumber, num2: this.secondNumber });
+          this.calculatedValue = await this.addNums({
+            num1: this.firstNumber,
+            num2: this.secondNumber,
+          });
           break;
 
         case "-":
-          this.calculatedValue =
-            Number(this.firstNumber) - Number(this.secondNumber);
+          this.calculatedValue = await this.subtractNums({
+            num1: this.firstNumber,
+            num2: this.secondNumber,
+          });
           break;
 
         case "*":
-          this.calculatedValue =
-            Number(this.firstNumber) * Number(this.secondNumber);
+          this.calculatedValue = await this.multiplyNums({
+            num1: this.firstNumber,
+            num2: this.secondNumber,
+          });
           break;
 
         case "/":
-          this.calculatedValue =
-            Number(this.firstNumber) / Number(this.secondNumber);
+          this.calculatedValue = await this.divideNums({
+            num1: this.firstNumber,
+            num2: this.secondNumber,
+          });
           break;
 
         default:
