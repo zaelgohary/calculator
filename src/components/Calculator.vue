@@ -73,9 +73,10 @@ export default {
     };
   },
   methods: {
-    onSubmit(e) {
-      console.log("Equal Button Pressed");
-      e.preventDefault();
+    onSubmit(values) {
+      // e.preventDefault();
+      // const num1 = this.firstNumber;
+      // const num2 = this.secondNumber;
       this.calc();
     },
     getInputValue(value) {
@@ -99,22 +100,20 @@ export default {
       this.displayValues();
     },
 
-    async addNums(firstNumber, secondNumber) {
+    async addNums(data) {
       try {
-        let response = await axios.post(
-          `https://infinite-oasis-15131.herokuapp.com/http://localhost:3000/add`,
-          {
-            params: {
-              num1: firstNumber,
-              num2: secondNumber,
-            },
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
+        let response = await axios.post(`http://localhost:3000/add`, data, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
         if (response.status === 200 && response.status < 300) {
-          console.log(response);
+          const result = await response.json();
+          console.log(result);
+          return response.data;
         } else {
           console.log("error happened");
         }
@@ -127,7 +126,7 @@ export default {
         case "+":
           this.calculatedValue =
             // Number(this.firstNumber) + Number(this.secondNumber);
-            this.addNums(this.firstNumber, this.secondNumber);
+            this.addNums({ num1: this.firstNumber, num2: this.secondNumber });
           break;
 
         case "-":

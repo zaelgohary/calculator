@@ -1,8 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cors = require('cors')
 // create express app
 const app = express();
+
+
+// use cors middleware
+app.use(cors())
+
+const corsOptions = {
+  origin: 'http://localhost:8080',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -22,7 +31,8 @@ app.get('/', (req, res) => {
 
 
 // sum route
-app.post(`/add`, (req, res) => {
+app.post(`/add`,cors(corsOptions), (req, res) => {
+  console.log(req);
   try {
     const result = sum(req.query.num1, req.query.num2)
     res.end(JSON.stringify(result));
