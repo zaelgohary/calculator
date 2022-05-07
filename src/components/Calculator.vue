@@ -81,11 +81,11 @@ export default {
       if (!this.firstNumber && !this.operator) {
         this.firstNumber = String(value);
       } else if (this.firstNumber && !this.operator) {
-        this.firstNumber += value;
+        this.firstNumber += String(value);
       } else if (!this.secondNumber && this.operator) {
         this.secondNumber = String(value);
       } else if (this.secondNumber && !this.calculatedValue) {
-        this.secondNumber += value;
+        this.secondNumber += String(value);
       }
 
       this.displayValues();
@@ -98,9 +98,9 @@ export default {
       this.displayValues();
     },
 
-    async addNums(data) {
+    async sumNums(data) {
       try {
-        let response = await axios.post(`http://localhost:3000/add`, data);
+        let response = await axios.post(`http://localhost:3000/sum`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);
@@ -160,7 +160,7 @@ export default {
     async calc() {
       switch (this.operator) {
         case "+":
-          this.calculatedValue = await this.addNums({
+          this.calculatedValue = await this.sumNums({
             num1: this.firstNumber,
             num2: this.secondNumber,
           });
@@ -252,7 +252,6 @@ export default {
 }
 form {
   background-color: rgb(88, 87, 87);
-
   display: grid;
   grid-template-columns: 3fr 1fr;
 }
@@ -260,7 +259,7 @@ form {
 form .numbers {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 
 form .operators {
@@ -273,7 +272,7 @@ form .operators {
 
 label:hover {
   cursor: pointer;
-  background-color: darkgray;
+  background-color: rgb(169, 169, 169);
   opacity: 0.5;
 }
 

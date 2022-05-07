@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 
 // sum route
-app.post(`/add`,cors(corsOptions), (req, res) => {
+app.post(`/sum`,cors(corsOptions), (req, res) => {
   console.log(req);
   try {
     const result = sum(req.body.num1, req.body.num2)
@@ -43,7 +43,7 @@ app.post(`/add`,cors(corsOptions), (req, res) => {
 
 
 // subtract route
-app.post(`/subtract`, (req, res) => {
+app.post(`/subtract`,cors(corsOptions),  (req, res) => {
   try {
     const result = subtract(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
@@ -54,7 +54,7 @@ app.post(`/subtract`, (req, res) => {
 
 
 // divide route
-app.post(`/divide`, (req, res) => {
+app.post(`/divide`,cors(corsOptions), (req, res) => {
   try {
     const result = divide(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
@@ -64,7 +64,7 @@ app.post(`/divide`, (req, res) => {
 });
 
 // multiply route
-app.post(`/multiply`, (req, res) => {
+app.post(`/multiply`,cors(corsOptions),  (req, res) => {
   try {
     const result = multiply(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
