@@ -8,32 +8,19 @@ const appRoutes = require('./routes');
 const app = express();
 
 
-// use cors middleware
-app.use(cors())
-
-
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // parse application/json
 app.use(bodyParser.json())
 
-
-// simple get route
-app.get('/', (req, res) => {
-  if(res.status(200)){
-    res.send('Hello from the server!!!')
-    res.end()
-  }
-  res.status(404).send('Server error')
-})
+// use cors middleware
+app.use(cors())
 
 
 app.use('/', appRoutes)
 
 
-
-app.listen(3000, 'localhost', () => {
-  console.log('listening to 3000');
+app.listen(4000, 'localhost', () => {
+  console.log('listening to 4000');
 });

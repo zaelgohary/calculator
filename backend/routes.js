@@ -1,6 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
+
+// simple get route
+router.get('/', (req, res) => {
+  if(res.status(200)){
+    res.send('Hello from the server!!!')
+    res.end()
+  }
+  res.status(404).send('Server error')
+})
+
+
 // sum route
 router.post(`/sum`, (req, res) => {
   console.log(req);
