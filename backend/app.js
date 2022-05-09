@@ -8,10 +8,6 @@ const app = express();
 // use cors middleware
 app.use(cors())
 
-const corsOptions = {
-  origin: 'http://localhost:8080',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -31,7 +27,7 @@ app.get('/', (req, res) => {
 
 
 // sum route
-app.post(`/sum`,cors(corsOptions), (req, res) => {
+app.post(`/sum`, (req, res) => {
   console.log(req);
   try {
     const result = sum(req.body.num1, req.body.num2)
@@ -43,7 +39,7 @@ app.post(`/sum`,cors(corsOptions), (req, res) => {
 
 
 // subtract route
-app.post(`/subtract`,cors(corsOptions),  (req, res) => {
+app.post(`/subtract`, (req, res) => {
   try {
     const result = subtract(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
@@ -54,7 +50,7 @@ app.post(`/subtract`,cors(corsOptions),  (req, res) => {
 
 
 // divide route
-app.post(`/divide`,cors(corsOptions), (req, res) => {
+app.post(`/divide`, (req, res) => {
   try {
     const result = divide(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));
@@ -64,7 +60,7 @@ app.post(`/divide`,cors(corsOptions), (req, res) => {
 });
 
 // multiply route
-app.post(`/multiply`,cors(corsOptions),  (req, res) => {
+app.post(`/multiply`, (req, res) => {
   try {
     const result = multiply(req.body.num1, req.body.num2)
     res.end(JSON.stringify(result));

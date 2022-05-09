@@ -80,14 +80,17 @@ export default {
     getInputValue(value) {
       if (!this.firstNumber && !this.operator) {
         this.firstNumber = String(value);
+        console.log(this.firstNumber);
       } else if (this.firstNumber && !this.operator) {
         this.firstNumber += String(value);
+        console.log(this.firstNumber);
       } else if (!this.secondNumber && this.operator) {
         this.secondNumber = String(value);
+        console.log("secondnum: ", this.secondNumber);
       } else if (this.secondNumber && !this.calculatedValue) {
         this.secondNumber += String(value);
+        console.log("secondnum: ", this.secondNumber);
       }
-
       this.displayValues();
       return value;
     },
@@ -200,15 +203,21 @@ export default {
     displayValues() {
       if (this.firstNumber && this.operator === null) {
         this.message = `${this.firstNumber} `;
+        console.log("firstnumber: ", this.message);
       } else if (this.firstNumber && this.operator && !this.secondNumber) {
         this.message += `${this.operator} `;
+        console.log("operator: ", this.operator);
+      } else if (this.firstNumber && this.operator && !this.secondNumber) {
+        this.message += `${this.secondNumber} `;
+        console.log("second number: ", this.secondNumber);
       } else if (
         this.firstNumber &&
         this.operator &&
         this.secondNumber &&
         !this.calculatedValue
       ) {
-        this.message += this.secondNumber;
+        this.message += `${this.secondNumber} `;
+        console.log("second number: ", this.secondNumber);
       } else if (
         this.firstNumber &&
         this.operator &&
@@ -216,8 +225,10 @@ export default {
         this.calculatedValue
       ) {
         this.message = this.calculatedValue;
+        console.log("calculatednumber: ", this.message);
       }
-      return this.message;
+      // console.log(this.message);
+      // return this.message;
     },
     reset() {
       this.firstNumber = "";
