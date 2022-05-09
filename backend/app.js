@@ -1,12 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
+const appRoutes = require('./routes');
+
+
 // create express app
 const app = express();
 
 
 // use cors middleware
 app.use(cors())
+
 
 
 // parse application/x-www-form-urlencoded
@@ -26,69 +30,8 @@ app.get('/', (req, res) => {
 })
 
 
-// sum route
-app.post(`/sum`, (req, res) => {
-  console.log(req);
-  try {
-    const result = sum(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
-  } catch (error) {
-    console.log('error: ', error);
-  }
-});
+app.use('/', appRoutes)
 
-
-// subtract route
-app.post(`/subtract`, (req, res) => {
-  try {
-    const result = subtract(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
-  } catch (error) {
-    console.log('error: ', error);
-  }
-});
-
-
-// divide route
-app.post(`/divide`, (req, res) => {
-  try {
-    const result = divide(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
-  } catch (error) {
-    console.log('error: ', error);
-  }
-});
-
-// multiply route
-app.post(`/multiply`, (req, res) => {
-  try {
-    const result = multiply(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
-  } catch (error) {
-    console.log('error: ', error);
-  }
-});
-
-
-// sum function
-const sum = (num1, num2) => {
-  return Number(num1) + Number(num2)
-}
-
-// subtract function
-const subtract = (num1, num2) => {
-  return Number(num1) - Number(num2)
-}
-
-// division function
-const divide = (num1, num2) =>{
-  return Number(num1) / Number(num2)
-}
-
-// multiply function
-const multiply = (num1, num2) => {
-  return Number(num1) * Number(num2)
-}
 
 
 app.listen(3000, 'localhost', () => {
