@@ -103,7 +103,7 @@ export default {
 
     async sumNums(data) {
       try {
-        let response = await axios.post(`http://localhost:3000/sum`, data);
+        let response = await axios.post(`http://localhost:4000/sum`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);
@@ -112,13 +112,18 @@ export default {
           console.log("error happened");
         }
       } catch (error) {
-        console.log("error: ", error);
+        if (!error.response) {
+          // network error
+          this.errorStatus = "Error: Network Error";
+        } else {
+          this.errorStatus = error.response.data.message;
+        }
       }
     },
 
     async subtractNums(data) {
       try {
-        let response = await axios.post(`http://localhost:3000/subtract`, data);
+        let response = await axios.post(`http://localhost:4000/subtract`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);
@@ -133,7 +138,7 @@ export default {
 
     async divideNums(data) {
       try {
-        let response = await axios.post(`http://localhost:3000/divide`, data);
+        let response = await axios.post(`http://localhost:4000/divide`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);
@@ -148,7 +153,7 @@ export default {
 
     async multiplyNums(data) {
       try {
-        let response = await axios.post(`http://localhost:3000/multiply`, data);
+        let response = await axios.post(`http://localhost:4000/multiply`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);

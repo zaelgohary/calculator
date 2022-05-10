@@ -2,13 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 
+
+
+
 // simple get route
 router.get('/', (req, res) => {
   if(res.status(200)){
     res.send('Hello from the server!!!')
-    res.end()
+    // res.end()
   }
-  res.status(404).send('Server error')
+  else{
+    res.status(404).send('Server error')
+
+  }
 })
 
 
@@ -17,7 +23,7 @@ router.post(`/sum`, (req, res) => {
   console.log(req);
   try {
     const result = sum(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
+    res.send(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);
   }
@@ -28,7 +34,7 @@ router.post(`/sum`, (req, res) => {
 router.post(`/subtract`, (req, res) => {
   try {
     const result = subtract(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
+    res.send(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);
   }
@@ -39,7 +45,7 @@ router.post(`/subtract`, (req, res) => {
 router.post(`/divide`, (req, res) => {
   try {
     const result = divide(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
+    res.send(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);
   }
@@ -49,7 +55,7 @@ router.post(`/divide`, (req, res) => {
 router.post(`/multiply`, (req, res) => {
   try {
     const result = multiply(req.body.num1, req.body.num2)
-    res.end(JSON.stringify(result));
+    res.send(JSON.stringify(result));
   } catch (error) {
     console.log('error: ', error);
   }
