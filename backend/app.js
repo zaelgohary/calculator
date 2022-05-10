@@ -37,24 +37,23 @@ app.get('/', (req, res) => {
 
 // sum route
 app.post(`/sum`, (req, res) => {
-  console.log(req.body);
-  try {
+  if(res.status(200)){
     const result = sum(req.body.num1, req.body.num2)
     res.send(JSON.stringify(result));
     console.log(req.body.num1, req.body.num2);
     console.log(result);
-  } catch (error) {
-    console.log(error.response.data.message);
+  }else{
+    console.log(error);
   }
 });
 
 
 // subtract route
 app.post(`/subtract`, (req, res) => {
-  try {
+  if (res.status(200)) {
     const result = subtract(req.body.num1, req.body.num2)
     res.send(JSON.stringify(result));
-  } catch (error) {
+  } else {
     console.log('error: ', error);
   }
 });
@@ -62,20 +61,21 @@ app.post(`/subtract`, (req, res) => {
 
 // divide route
 app.post(`/divide`, (req, res) => {
-  try {
+  if (res.status(200)) {
     const result = divide(req.body.num1, req.body.num2)
     res.send(JSON.stringify(result));
-  } catch (error) {
+  } else {
     console.log('error: ', error);
+    
   }
 });
 
 // multiply route
 app.post(`/multiply`, (req, res) => {
-  try {
+  if (res.status(200)) {
     const result = multiply(req.body.num1, req.body.num2)
     res.send(JSON.stringify(result));
-  } catch (error) {
+  } else {
     console.log('error: ', error);
   }
 });
