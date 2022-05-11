@@ -112,12 +112,7 @@ export default {
           console.log("error happened");
         }
       } catch (error) {
-        if (!error.response) {
-          // network error
-          this.errorStatus = "Error: Network Error";
-        } else {
-          this.errorStatus = error.response.data.message;
-        }
+        console.log(error);
       }
     },
 
