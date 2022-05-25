@@ -208,7 +208,7 @@ export default {
         this.message += `${this.operator} `;
         console.log("operator: ", this.operator);
       } else if (this.firstNumber && this.operator && !this.secondNumber) {
-        this.message += `${this.secondNumber} `;
+        this.message += `${this.secondNumber}`;
         console.log("second number: ", this.secondNumber);
       } else if (
         this.firstNumber &&
@@ -216,7 +216,7 @@ export default {
         this.secondNumber &&
         !this.calculatedValue
       ) {
-        this.message += `${this.secondNumber} `;
+        this.message += `${this.secondNumber}`;
         console.log("second number: ", this.secondNumber);
       } else if (
         this.firstNumber &&
@@ -227,8 +227,6 @@ export default {
         this.message = this.calculatedValue;
         console.log("calculatednumber: ", this.message);
       }
-      // console.log(this.message);
-      // return this.message;
     },
     reset() {
       this.firstNumber = "";

@@ -1,22 +1,18 @@
-# parent image
-FROM node:17-alpine
+# Choose the Image which has Node installed already
+FROM node:lts-alpine
 
+# make the 'client' folder the current working directory
+WORKDIR /backend
 
-# Working dir
-WORKDIR /app
-
-
-# copy dependencies from the current working dir (relative path)
+# copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
-
-# install dependencies
+# install project dependencies
 RUN npm install
 
 
-# specify a port for port mapping
-EXPOSE 3000
+CMD node app.js
+
+EXPOSE 4000
 
 
-# specify some commands to run once the image is installed
-CMD ["node", "app.js"]

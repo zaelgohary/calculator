@@ -59,22 +59,22 @@ router.post(`/multiply`, (req, res) => {
 
 // sum function
 const sum = (num1, num2) => {
-  return Number(num1) + Number(num2)
+  return (+num1) + (+num2)
 }
 
 // subtract function
 const subtract = (num1, num2) => {
-  return Number(num1) - Number(num2)
+  return (+num1) - (+num2)
 }
 
 // division function
 const divide = (num1, num2) =>{
-  return Number(num1) / Number(num2)
+  return (+num1) / (+num2)
 }
 
 // multiply function
 const multiply = (num1, num2) => {
-  return Number(num1) * Number(num2)
+  return (+num1) * (+num2)
 }
 
 module.exports = router; 
