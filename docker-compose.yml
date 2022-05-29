@@ -6,6 +6,13 @@ services:
       - "8080:8080"
 
   node_backend:
-    image: dockerize-node
+    # build: ./backend
+    # container_name: node-c
+    image: node-image
     ports:
       - "4000:4000"
+    volumes:
+      - ./backend:/backend
+      - modules:/backend/node_modules
+volumes:
+  modules:

@@ -4,7 +4,8 @@
   "description": "backend for a simple vue calculator",
   "main": "app.js",
   "scripts": {
-    "test": "true"
+    "test": "true",
+    "dev": "nodemon app.js"
   },
   "author": "zaelgohary",
   "license": "ISC",

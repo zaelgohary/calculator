@@ -22,4 +22,6 @@ app.use('/', appRoutes)
 
 app.listen(4000, '0.0.0.0', 'localhost', () => {
   console.log('listening to 4000');
+  console.log('lolololololoy');
 });
+
