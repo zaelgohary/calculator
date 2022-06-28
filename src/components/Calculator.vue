@@ -205,18 +205,15 @@ export default {
         this.message = `${this.firstNumber} `;
         console.log("firstnumber: ", this.message);
       } else if (this.firstNumber && this.operator && !this.secondNumber) {
-        this.message += `${this.operator} `;
+        this.message = `${this.firstNumber} ${this.operator} `;
         console.log("operator: ", this.operator);
-      } else if (this.firstNumber && this.operator && !this.secondNumber) {
-        this.message += `${this.secondNumber}`;
-        console.log("second number: ", this.secondNumber);
       } else if (
         this.firstNumber &&
         this.operator &&
         this.secondNumber &&
         !this.calculatedValue
       ) {
-        this.message += `${this.secondNumber}`;
+        this.message = `${this.firstNumber} ${this.operator} ${this.secondNumber}`;
         console.log("second number: ", this.secondNumber);
       } else if (
         this.firstNumber &&
