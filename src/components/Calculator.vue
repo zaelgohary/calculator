@@ -103,8 +103,8 @@ export default {
 
     async sumNums(data) {
       try {
-        let response = await axios.post(`http://localhost:4000/sum`, data);
-
+        console.log(`${process.env.VUE_APP_BACKEND}sum`);
+        let response = await axios.post(`${process.env.VUE_APP_BACKEND}sum`, data);
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);
           return response.data;
@@ -118,7 +118,7 @@ export default {
 
     async subtractNums(data) {
       try {
-        let response = await axios.post(`http://localhost:4000/subtract`, data);
+        let response = await axios.post(`${process.env.VUE_APP_BACKEND}subtract`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);
@@ -133,7 +133,7 @@ export default {
 
     async divideNums(data) {
       try {
-        let response = await axios.post(`http://localhost:4000/divide`, data);
+        let response = await axios.post(`${process.env.VUE_APP_BACKEND}divide`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);
@@ -148,7 +148,7 @@ export default {
 
     async multiplyNums(data) {
       try {
-        let response = await axios.post(`http://localhost:4000/multiply`, data);
+        let response = await axios.post(`${process.env.VUE_APP_BACKEND}multiply`, data);
 
         if (response.status === 200 && response.status < 300) {
           console.log(response.data);

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  selector:
+    matchLabels:
+      app: server
+      tier: backend
+  template:
+    metadata:
+      name: server-pod
+      labels:
+        app: server
+        tier: backend
+    spec:
+      containers:
+      - name: server
+        image: zaelgohary/calc-node:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: FRONTEND
+          value: {{ .Values.frontend }}

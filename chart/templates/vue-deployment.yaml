@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vue-deployment
+spec:
+  selector:
+    matchLabels:
+      app: vue
+      tier: frontend
+  template:
+    metadata:
+      name: vue-pod
+      labels:
+        app: vue
+        tier: frontend
+    spec:
+      containers:
+      - name: vue
+        image: zaelgohary/calc-vue:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: BACKEND
+          value: {{ .Values.backend }}
