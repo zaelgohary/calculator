@@ -12,7 +12,7 @@ COPY . .
 
 
 # giving permission to start ssh
-RUN chmod +x /start.sh
+RUN chmod +x start.sh
 
 # start ssh
 RUN apk add openssh-server && ssh-keygen -A

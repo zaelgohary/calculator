@@ -8,6 +8,6 @@ echo $SSH_KEY > /root/.ssh/authorized_keys
 /usr/sbin/sshd
 echo root:hamada | chpasswd
 
-cd /client
+
 npm run serve -- --port 8080
 sleep 1000000
