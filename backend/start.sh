@@ -7,7 +7,6 @@ echo $SSH_KEY > /root/.ssh/authorized_keys
 /usr/sbin/sshd
 echo root:hamada | chpasswd
 
-cd /server
-npm run dev
-touch start.txt
+cd /backend
+nodemon app.js
 sleep 1000000
