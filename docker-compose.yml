@@ -1,20 +1,13 @@
 version: '3.7'
 services:
   vue:
-    # environment:
-    #   - FRONTEND=http://localhost:8080/
     image: "zaelgohary/calc-vue:latest"
     ports:
       - "8080:8080"
 
   node_backend:
-    # environment:
-    #   - BACKEND=http://localhost:4000/
     image: "zaelgohary/calc-node:latest"
     ports:
       - "4000:4000"
-    volumes:
-      - ./backend:/backend
-      - modules:/backend/node_modules
 volumes:
   modules:

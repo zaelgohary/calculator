@@ -21,6 +21,6 @@ RUN apk add openssh-server && ssh-keygen -A
 RUN npm install
 
 
-CMD npm run serve
+CMD /calculator/start.sh
 
 EXPOSE 8080

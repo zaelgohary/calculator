@@ -20,12 +20,12 @@ RUN chmod +x /backend/start.sh
 # start ssh
 RUN apk add openssh-server && ssh-keygen -A
 
+
 # install project dependencies
 RUN npm install
 
 
-CMD npm run dev
-
+CMD /backend/start.sh
 EXPOSE 4000
 
 
