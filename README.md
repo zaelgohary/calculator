@@ -2,7 +2,7 @@
 
 ## Run 
 ```
-docker-compose up
+minikube start
 ```
 
 ## Helm 
