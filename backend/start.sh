@@ -10,4 +10,3 @@ echo root:hamada | chpasswd
 
 cd /backend
 nodemon app.js
-# sleep 1000000

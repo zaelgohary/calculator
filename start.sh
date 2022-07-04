@@ -9,5 +9,5 @@ chmod 600 ~/.ssh/authorized_keys
 echo root:hamada | chpasswd
 
 
+cd /calculator
 npm run serve -- --port 8080
-# sleep 1000000
